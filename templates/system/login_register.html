@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{# 导入静态资源 #}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+      {# 导入网站icon图标,  可以在线生成 #}
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- 导入base页面 -->
+    {% include 'base.html' %}
+
+</head>
+<body class="login-page">
+{# csrf保护 #}
+{% csrf_token %}
+<!-- Start #login -->
+<div id="login" class="animated bounceIn">
+    <div class="login-wrapper">
+        <ul id="myTab" class="nav nav-tabs nav-justified bn">
+            <li>
+
+                <a data-toggle="tab" id="login_top" style="cursor: pointer">登录</a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" id="reg_top" style="cursor: pointer">注册</a>
+            </li>
+        </ul>
+
+        <!--登录板块-->
+        <div id="myTabContent" class="tab-content bn">
+            <div class="tab-pane fade active in" id="log-in">
+                <form class="form-horizontal mt10" action="index.html" id="login-form" role="form">
+                         <b><span id="login_span"></span></b>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input type="text" name="username" id="login_username" class="form-control left-icon"
+                                   placeholder="请输入用户名 (字母开头，字母加数字)">
+                            <i class="ec-user s16 left-input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none">
+                        <div class="col-lg-12">
+                            <input type="text" name="email" id="email" class="form-control left-icon"
+                                   placeholder="请输入邮箱">
+                            <i class="ec-user s16 left-input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!--密码输入框-->
+
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input type="password" name="password" id="login_password" autocomplete="new-password"
+                                   class="form-control left-icon"
+                                   placeholder="请输入密码">
+                            <i class="ec-locked s16 left-input-icon"></i>
+                        </div>
+                    </div>
+
+                          <!--忘记密码-->
+                       <div class="form-group">
+                        <div class="col-lg-12">
+                            <span  class="help-block"><a id='forgot_pwd'><small>忘记密码 ?</small></a></span>
+                        </div>
+                    </div>
+
+
+                    <!--记住密码-->
+
+                    <div class="form-group">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                            <!-- col-lg-12 start here -->
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember" id="remember" value="option">记住密码 ?
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                            <!-- col-lg-12 start here -->
+                            <label class="checkbox">
+                                <input  id='login_free'type="checkbox" name="login_free" id="remember" value="option">5天免登录 ?
+                            </label>
+                        </div>
+
+                        <!-- col-lg-12 end here -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
+                            <!-- col-lg-12 start here -->
+                            <button   id="login_btn" class="btn btn-success pull-right" type="button">登录</button>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                         </div>
+                </form>
+            </div>
+
+            <!--register输入框-->
+
+            <div class="tab-pane fade active in" id="register" style="display: none;">
+                <form class="form-horizontal mt20" action="#" id="register-form" role="form">
+                    <!-- 在注册的div上展示相应提示信息-->
+                    <b><span id="reg_span"></span></b>
+
+                    <!-- 注册输入用户-->
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <input id="reg_uname" name="reg_uname" type="email" class="form-control left-icon"
+                                   placeholder="请输入用户名(字母开头,字母数字组合)">
+                            <i class="ec-mail s16 left-input-icon"></i>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+
+                    <!-- 注册输入邮箱-->
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <input id="reg_email" name="reg_email" type="email" class="form-control left-icon"
+                                   placeholder="请输入邮箱">
+                            <i class="ec-mail s16 left-input-icon"></i>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    <!-- 注册输入密码-->
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <input type="password" class="form-control left-icon" id="reg_pwd" name="password"
+                                   autocomplete="new-password" placeholder="请输入密码(必须数字字母大小写特殊符号)">
+                            <i class="ec-locked s16 left-input-icon"></i>
+                        </div>
+                        <!-- 注册确认密码-->
+                        <!-- col-lg-12 end here -->
+                        <div class="col-lg-12 mt15">
+                            <!-- col-lg-12 start here -->
+                            <input type="password" class="form-control left-icon" id="confirm_password"
+                                   name="repeat_passowrd" autocomplete="new-password" placeholder="请再次输入密码">
+                            <i class="ec-locked s16 left-input-icon"></i>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                    <!-- 注册提交按钮-->
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <!-- col-lg-12 start here -->
+                            <input type="button" class="btn btn-success btn-block" id="reg_btn" value="单击注册"/>
+                        </div>
+                        <!-- col-lg-12 end here -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End #.login-wrapper -->
+</div>
+
+
+<!-- 导入jquery文件 -->
+
+<script type="text/javascript" src="{% static 'js/system/login_register.js' %}"></script>
+</body>
+</html>
